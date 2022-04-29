@@ -1,0 +1,13 @@
+# Github workflow to deploy to production
+name: deploy
+on: [push]
+jobs:
+  build:
+    name: Copy folder content recursively to remote
+    uses: garygrossgarten/github-action-scp@release
+    with:
+      local: ./
+      remote: /home/5Co/${{secrets.SSH_USER}}${{secrets.PASSWORD}}
+      host: ${{ secrets.HOST }}
+      username: ${{ secrets.SSH_USER }}
+      password: ${{ secrets.PASSWORD }}
