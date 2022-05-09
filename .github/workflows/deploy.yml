@@ -1,6 +1,9 @@
-# Github workflow to deploy to production
+# Github workflow to deploy to production in master branch 
 name: deploy
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +15,14 @@ jobs:
       uses: garygrossgarten/github-action-scp@release 
       with:
         local: ./
-        remote: /home/5Co/${{secrets.SSH_USER}}${{secrets.PASSWORD}}
+        remote: /var/www/${{secrets.SSH_USER}}/
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.PASSWORD }}
+    - name: deploy-ssh
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sh /deploy.sh
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.PASSWORD }}
