@@ -12,7 +12,7 @@ jobs:
       uses: garygrossgarten/github-action-scp@release 
       with:
         local: .
-        remote: /var/www/${{secrets.SSH_USER}}/index.html
+        remote: /var/www/${{secrets.SSH_USER}}/
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.PASSWORD }}
