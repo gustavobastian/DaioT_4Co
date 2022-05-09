@@ -15,7 +15,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.PASSWORD }}
-        source: "test/"
+        source: .
         target: /var/www/${{secrets.SSH_USER}}/
     - name: deploy-ssh
       uses: garygrossgarten/github-action-ssh@release
