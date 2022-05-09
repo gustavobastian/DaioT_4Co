@@ -7,14 +7,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      CI: true
-      LOCAL: test
     steps:
     - name: Copy folder content recursively to remote
       uses: garygrossgarten/github-action-scp@release 
       with:
-        local: .github/workflows/deploy.yml
+        local: test/
         remote: /var/www/${{secrets.SSH_USER}}/
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
